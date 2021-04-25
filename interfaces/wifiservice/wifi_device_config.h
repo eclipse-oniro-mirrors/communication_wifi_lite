@@ -37,8 +37,8 @@
  * @version 1.0
  */
 
-#ifndef _WIFI_DEVICE_CONFIG_H
-#define _WIFI_DEVICE_CONFIG_H
+#ifndef HARMONY_OS_LITE_WIFI_DEVICE_CONFIG_H
+#define HARMONY_OS_LITE_WIFI_DEVICE_CONFIG_H
 
 /**
  * @brief Indicates the maximum number of Wi-Fi station configurations that can be added using {@link AddDeviceConfig}.
@@ -57,7 +57,8 @@
 /**
  * @brief Indicates the maximum length of a Wi-Fi SSID.
  *
- * The maximum length is 32, and the last bit is reserved and set to <b>\0</b>. \n */
+ * The maximum length is 32, and the last bit is reserved and set to <b>\0</b>. \n
+ */
 #define WIFI_MAX_SSID_LEN 33 // 32 + \0
 /**
  * @brief Indicates the maximum length of a Wi-Fi key.
@@ -76,6 +77,13 @@
  *
  */
 #define WIFI_PSK_LEN 32
+/**
+ * @brief Indicates the maximum number of DNS servers.
+ *
+ * A maximum of two DNS servers are allowed. \n
+ */
+#define WIFI_MAX_DNS_NUM 2
+
 /**
  * @brief Enumerates Wi-Fi security types.
  *
@@ -109,6 +117,38 @@ typedef enum {
 } WifiPskType;
 
 /**
+ * @brief Defines the IP configuration of the Wi-Fi device.
+ *
+ * The IP configuration is mainly used for connecting to the device. \n
+ *
+ * @since 3
+ */
+typedef struct {
+    /** IP address of the Wi-Fi device */
+    int ipAddress;
+    /** Gateway of the Wi-Fi device */
+    int gateway;
+    /** DNS server addresses for the Wi-Fi device */
+    int dnsServers[WIFI_MAX_DNS_NUM];
+    /** Subnet mask of the Wi-Fi device */
+    int netmask;
+} IpConfig;
+
+/**
+ * @brief Enumerates IP address types for the Wi-Fi device.
+ *
+ * @since 3
+ */
+typedef enum {
+    /** Static IP address */
+    STATIC,
+    /** IP address dynamically assigned by DHCP */
+    DHCP,
+    /** Unknown IP address type */
+    UNKNOWN
+} IpType;
+
+/**
  * @brief Represents the Wi-Fi station configuration used to connect to a specified Wi-Fi device.
  *
  * @since 1.0
@@ -129,6 +169,10 @@ typedef struct WifiDeviceConfig {
     unsigned int freq;
     /** PSK type, see {@link WifiPskType}. */
     int wapiPskType;
+    /** IP address type */
+    IpType ipType;
+    /** Static IP address */
+    IpConfig staticIp;
 } WifiDeviceConfig;
 
 /**
@@ -169,5 +213,5 @@ typedef struct {
     WifiScanType scanType;
 } WifiScanParams;
 
-#endif // _WIFI_DEVICE_CONFIG_H
+#endif // HARMONY_OS_LITE_WIFI_DEVICE_CONFIG_H
 /** @} */
