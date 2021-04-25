@@ -35,8 +35,8 @@
  * @version 1.0
  */
 
-#ifndef _WIFI_LINKED_INFO_H
-#define _WIFI_LINKED_INFO_H
+#ifndef HARMONY_OS_LITE_WIFI_LINKED_INFO_H
+#define HARMONY_OS_LITE_WIFI_LINKED_INFO_H
 #include "wifi_device_config.h"
 
 /**
@@ -72,6 +72,8 @@ typedef struct {
     WifiConnState connState;
     /** Reason for Wi-Fi disconnection */
     unsigned short disconnectedReason;
+    /** IP address of the connected hotspot */
+    int ipAddress;
 } WifiLinkedInfo;
-#endif // _WIFI_LINKED_INFO_H
+#endif // HARMONY_OS_LITE_WIFI_LINKED_INFO_H
 /** @} */
