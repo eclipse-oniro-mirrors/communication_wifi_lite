@@ -38,8 +38,8 @@
  * @version 1.0
  */
 
-#ifndef _WIFI_STATION_INFO_H
-#define _WIFI_STATION_INFO_H
+#ifndef HARMONY_OS_LITE_WIFI_STATION_INFO_H
+#define HARMONY_OS_LITE_WIFI_STATION_INFO_H
 #include "wifi_device_config.h"
 
 /**
@@ -51,10 +51,14 @@
  * @version 1.0
  */
 typedef struct {
+    /** Network name of the station */
+    char* name;
     /** MAC address. For its length, see {@link WIFI_MAC_LEN}. */
     unsigned char macAddress[WIFI_MAC_LEN];
+    /** IP address of the station */
+    unsigned int ipAddress;
     unsigned short disconnectedReason;
 } StationInfo;
 
-#endif // _WIFI_STATION_INFO_H
+#endif // HARMONY_OS_LITE_WIFI_STATION_INFO_H
 /** @} */

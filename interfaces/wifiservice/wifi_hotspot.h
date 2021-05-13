@@ -36,8 +36,8 @@
  * @version 1.0
  */
 
-#ifndef _WIFI_HOTSPOT_H
-#define _WIFI_HOTSPOT_H
+#ifndef HARMONY_OS_LITE_WIFI_HOTSPOT_H
+#define HARMONY_OS_LITE_WIFI_HOTSPOT_H
 #include "wifi_device.h"
 #include "wifi_error_code.h"
 #include "wifi_hotspot_config.h"
@@ -82,7 +82,8 @@ WifiErrorCode DisableHotspot(void);
  * @return Returns {@link WIFI_SUCCESS} if the hotspot configuration is set; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
  * @since 1.0
- * @version 1.0 */
+ * @version 1.0
+ */
 WifiErrorCode SetHotspotConfig(const HotspotConfig* config);
 
 /**
@@ -138,5 +139,32 @@ WifiErrorCode GetStationList(StationInfo* result, unsigned int* size);
  */
 int GetSignalLevel(int rssi, int band);
 
-#endif // _WIFI_HOTSPOT_H_
+/**
+ * @brief Disconnects from the station with a specified MAC address.
+ *
+ * 
+ * 
+ * @param mac Indicates the pointer to the MAC address of the station.
+ * @param macLen Indicates the length of the MAC address of the station.
+ * @return Returns {@link WIFI_SUCCESS} if the function is successfully called;
+ * returns an error code defined in {@link WifiErrorCode} otherwise.
+ * @since 3
+ */
+WifiErrorCode DisassociateSta(unsigned char* mac, int macLen);
+
+/**
+ * @brief Adds the hotspot transmit power to the beacon.
+ *
+ * After the transmit power is added, the beacon must contain specified IEs. If the minimum transmit power
+ * <b>0xFFFFFFFF</b> is added, the beacon does not contain the IEs. \n
+ * The transmit power is added to the <b>ie</b> field only, exerting no impacts on the transmit power. \n
+ * 
+ * @param power Indicates the transmit power to add.
+ * @return Returns {@link WIFI_SUCCESS} if the function is successfully called; returns an error code defined
+ * in {@link WifiErrorCode} otherwise.
+ * @since 3
+ */
+WifiErrorCode AddTxPowerInfo(int power);
+
+#endif // HARMONY_OS_LITE_WIFI_HOTSPOT_H_
 /** @} */
