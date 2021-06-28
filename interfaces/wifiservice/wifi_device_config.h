@@ -141,7 +141,7 @@ typedef struct {
  */
 typedef enum {
     /** Static IP address */
-    STATIC,
+    STATIC_IP,
     /** IP address dynamically assigned by DHCP */
     DHCP,
     /** Unknown IP address type */
