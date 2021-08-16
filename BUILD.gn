@@ -11,8 +11,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/lite/config/component/lite_component.gni")
-
-lite_component("wifi") {
-  features = [ "$ohos_vendor_adapter_dir/hals/communication/wifi_lite/wifiservice:wifiservice" ]
+group("wifi") {
+  deps = [ "$ohos_board_adapter_dir/hals/communication/wifi_lite/wifiservice:wifiservice" ]
 }
