@@ -22,8 +22,7 @@
  * You can use this module to enable and disable the Wi-Fi station or hotspot mode, connect to and disconnect from a
  * station or hotspot, query the station or hotspot status, and listen for events. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 /**
@@ -32,12 +31,11 @@
  * @brief Provides capabilities to enable and disable the station mode, connect to and disconnect from a station,
  * query the station status, and listen for events.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
-#ifndef _WIFI_DEVICE_H
-#define _WIFI_DEVICE_H
+#ifndef WIFI_DEVICE_C_H
+#define WIFI_DEVICE_C_H
 #include "wifi_event.h"
 #include "station_info.h"
 #include "wifi_scan_info.h"
@@ -50,8 +48,7 @@
  *
  * @return Returns {@link WIFI_SUCCESS} if the station mode is enabled; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 WifiErrorCode EnableWifi(void);
 
@@ -60,8 +57,7 @@ WifiErrorCode EnableWifi(void);
  *
  * @return Returns {@link WIFI_SUCCESS} if the station mode is disabled; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 WifiErrorCode DisableWifi(void);
 
@@ -70,8 +66,7 @@ WifiErrorCode DisableWifi(void);
  *
  * @return Returns {@link WIFI_STA_ACTIVE} if the station mode is enabled; returns {@link WIFI_STA_NOT_ACTIVE}
  * otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 int IsWifiActive(void);
 
@@ -80,8 +75,7 @@ int IsWifiActive(void);
  *
  * @return Returns {@link WIFI_SUCCESS} if the Wi-Fi scan is started; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 WifiErrorCode Scan(void);
 
@@ -95,10 +89,9 @@ WifiErrorCode Scan(void);
  * @param size Indicates the size of the array.
  * @return Returns {@link WIFI_SUCCESS} if the array of hotspots detected in the Wi-Fi scan is obtained; returns an
  * error code defined in {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
-WifiErrorCode GetScanInfoList(WifiScanInfo* result, unsigned int* size);
+WifiErrorCode GetScanInfoList(WifiScanInfo *result, unsigned int *size);
 
 /**
  * @brief Adds a specified hotspot configuration for connecting to a hotspot.
@@ -109,10 +102,9 @@ WifiErrorCode GetScanInfoList(WifiScanInfo* result, unsigned int* size);
  * @param result Indicates the generated <b>networkId</b>. Each <b>networkId</b> matches a hotspot configuration.
  * @return Returns {@link WIFI_SUCCESS} if the specified hotspot configuration is added; returns an error code defined
  * in {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
-WifiErrorCode AddDeviceConfig(const WifiDeviceConfig* config, int* result);
+WifiErrorCode AddDeviceConfig(const WifiDeviceConfig *config, int *result);
 
 /**
  * @brief Obtains all hotspot configurations.
@@ -124,10 +116,9 @@ WifiErrorCode AddDeviceConfig(const WifiDeviceConfig* config, int* result);
  * @param size Indicates the size of the array.
  * @return Returns {@link WIFI_SUCCESS} if all hotspot configurations are obtained; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
-WifiErrorCode GetDeviceConfigs(WifiDeviceConfig* result, unsigned int* size);
+WifiErrorCode GetDeviceConfigs(WifiDeviceConfig *result, unsigned int *size);
 
 /**
  * @brief Removes a hotspot configuration matching a specified <b>networkId</b>.
@@ -135,10 +126,31 @@ WifiErrorCode GetDeviceConfigs(WifiDeviceConfig* result, unsigned int* size);
  * @param networkId Indicates the <b>networkId</b> matching the hotspot configuration to remove.
  * @return Returns {@link WIFI_SUCCESS} if the hotspot configuration is removed; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 WifiErrorCode RemoveDevice(int networkId);
+
+/**
+ * @brief Disable a hotspot configuration matching a specified <b>networkId</b>. If the config is diabled, it will
+ * not be auto connected.
+ *
+ * @param networkId Indicates the <b>networkId</b> matching the hotspot configuration to disable.
+ * @return Returns {@link WIFI_SUCCESS} if the hotspot configuration is disabled; returns an error code defined in
+ * {@link WifiErrorCode} otherwise.
+ * @since 7
+ */
+WifiErrorCode DisableDeviceConfig(int networkId);
+
+/**
+ * @brief Enable a hotspot configuration matching a specified <b>networkId</b>. If the config is enabled, it will
+ * be connected automatically when wifi is enabled. When the config is added, it is enabled in default.
+ *
+ * @param networkId Indicates the <b>networkId</b> matching the hotspot configuration to enable.
+ * @return Returns {@link WIFI_SUCCESS} if the hotspot configuration is enabled; returns an error code defined in
+ * {@link WifiErrorCode} otherwise.
+ * @since 7
+ */
+WifiErrorCode EnableDeviceConfig(int networkId);
 
 /**
  * @brief Connects to a hotspot matching a specified <b>networkId</b>.
@@ -148,18 +160,26 @@ WifiErrorCode RemoveDevice(int networkId);
  * @param networkId Indicates the <b>networkId</b> matching the target hotspot.
  * @return Returns {@link WIFI_SUCCESS} if the hotspot is connected; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 WifiErrorCode ConnectTo(int networkId);
+
+/**
+ * @brief Connect to a hotspot by config.
+ *
+ * @param config is device configuration to connect the Wi-Fi network.
+ * @return Returns {@link WIFI_SUCCESS} if the hotspot is connected; returns an error code defined in
+ * {@link WifiErrorCode} otherwise.
+ * @since 7
+ */
+WifiErrorCode ConnectToDevice(const WifiDeviceConfig *config);
 
 /**
  * @brief Disconnects this Wi-Fi connection.
  *
  * @return Returns {@link WIFI_SUCCESS} if this Wi-Fi connection is disconnected; returns an error code defined
  * in {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 WifiErrorCode Disconnect(void);
 
@@ -169,47 +189,19 @@ WifiErrorCode Disconnect(void);
  * @param result Indicates the information about the connected hotspot.
  * @return Returns {@link WIFI_SUCCESS} if the information about the connected hotspot is obtained; returns an error
  * code defined in {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
-WifiErrorCode GetLinkedInfo(WifiLinkedInfo* result);
-
-/**
- * @brief Registers a callback for a specified Wi-Fi event.
- *
- * The registered callback will be invoked when the Wi-Fi event defined in {@link WifiEvent} occurs. \n
- *
- * @param event Indicates the event for which the callback is to be registered.
- * @return Returns {@link WIFI_SUCCESS} if the callback is registered successfully; returns an error code defined
- * in {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
- */
-WifiErrorCode RegisterWifiEvent(WifiEvent* event);
-
-/**
- * @brief Unregisters a callback previously registered for a specified Wi-Fi event.
- *
- * @param event Indicates the event for which the callback is to be unregistered.
- * @return Returns {@link WIFI_SUCCESS} if the callback is unregistered successfully; returns an error code defined
- * in {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
- */
-WifiErrorCode UnRegisterWifiEvent(const WifiEvent* event);
+WifiErrorCode GetLinkedInfo(WifiLinkedInfo *result);
 
 /**
  * @brief Obtains the MAC address of this device.
  *
- *
- *
  * @param result Indicates the MAC address of this device. It is a char array whose length is 6.
  * @return Returns {@link WIFI_SUCCESS} if the MAC address of this device is obtained; returns an error code defined
  * in {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
-WifiErrorCode GetDeviceMacAddress(unsigned char* result);
+WifiErrorCode GetDeviceMacAddress(unsigned char *result);
 
 /**
  * @brief Starts a Wi-Fi scan based on a specified parameter.
@@ -220,9 +212,54 @@ WifiErrorCode GetDeviceMacAddress(unsigned char* result);
  * For details, see {@link WifiScanParams}.
  * @return Returns {@link WIFI_SUCCESS} if the Wi-Fi scan is started successfully;
  * returns an error code defined in {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 WifiErrorCode AdvanceScan(WifiScanParams *params);
-#endif // _WIFI_DEVICE_H
+
+/*
+ * @brief get the ip address.
+ *
+ * @return Returns {@link WIFI_SUCCESS} if the IP is got; returns an error code defined
+ * in {@link WifiErrorCode} otherwise.
+ * @since 7
+ */
+WifiErrorCode GetIpInfo(IpInfo *info);
+
+/**
+ * @brief Obtains the signal level indicated by a specified received signal strength indicator (RSSI) and frequency
+ * band.
+ *
+ *
+ * Based on the signal level, you can display the signal strength represented by the number of signal bars. \n
+ *
+ * @param rssi Indicates the RSSI.
+ * @param band Indicates the frequency band, either {@link HOTSPOT_BAND_TYPE_5G} or {@link HOTSPOT_BAND_TYPE_2G}.
+ * @return Returns the signal level if it is obtained; returns <b>-1</b> otherwise.
+ * @since 7
+ */
+int GetSignalLevel(int rssi, int band);
+
+/**
+ * @brief Registers a callback for a specified Wi-Fi event.
+ *
+ * The registered callback will be invoked when the Wi-Fi event defined in {@link WifiEvent} occurs. \n
+ *
+ * @param event Indicates the event for which the callback is to be registered.
+ * @return Returns {@link WIFI_SUCCESS} if the callback is registered successfully; returns an error code defined
+ * in {@link WifiErrorCode} otherwise.
+ * @since 7
+ */
+WifiErrorCode RegisterWifiEvent(WifiEvent *event);
+
+/**
+ * @brief Unregisters a callback previously registered for a specified Wi-Fi event.
+ *
+ * @param event Indicates the event for which the callback is to be unregistered.
+ * @return Returns {@link WIFI_SUCCESS} if the callback is unregistered successfully; returns an error code defined
+ * in {@link WifiErrorCode} otherwise.
+ * @since 7
+ */
+WifiErrorCode UnRegisterWifiEvent(const WifiEvent *event);
+
+#endif // WIFI_DEVICE_C_H
 /** @} */

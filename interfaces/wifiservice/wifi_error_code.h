@@ -22,8 +22,7 @@
  * You can use this module to enable and disable the Wi-Fi station or hotspot mode, connect to and disconnect from a
  * station or hotspot, query the station or hotspot status, and listen for events. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 /**
@@ -31,18 +30,16 @@
  *
  * @brief Defines error codes of the Wi-Fi service.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
-#ifndef _WIFI_ERROR_CODE_H
-#define _WIFI_ERROR_CODE_H
+#ifndef WIFI_ERROR_CODE_C_H
+#define WIFI_ERROR_CODE_C_H
 
 /**
  * @brief Enumerates Wi-Fi error codes.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef enum {
     /** No errors. */
@@ -63,9 +60,11 @@ typedef enum {
     ERROR_WIFI_NOT_STARTED = -7,
     /** System busy */
     ERROR_WIFI_BUSY = -8,
+    /** Wi-Fi invalid password */
+    ERROR_WIFI_INVALID_PASSWORD = -9,
     /** Unknown error */
-    ERROR_WIFI_UNKNOWN = -9
+    ERROR_WIFI_UNKNOWN = -128
 } WifiErrorCode;
 
-#endif // _WIFI_ERROR_CODE_H
+#endif // WIFI_ERROR_CODE_C_H
 /** @} */

@@ -22,8 +22,7 @@
  * You can use this module to enable and disable the Wi-Fi station or hotspot mode, connect to and disconnect from a
  * station or hotspot, query the station or hotspot status, and listen for events. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 /**
@@ -33,13 +32,14 @@
  *
  * {@link RegisterWifiEvent} can be used to listen for Wi-Fi connection, disconnection, and scan events. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
-#ifndef _WIFI_EVENT_H
-#define _WIFI_EVENT_H
+#ifndef WIFI_EVENT_C_H
+#define WIFI_EVENT_C_H
+
 #include "wifi_linked_info.h"
 #include "station_info.h"
+#include "wifi_error_code.h"
 
 /**
  * @brief Indicates that the Wi-Fi station mode is enabled.
@@ -76,20 +76,19 @@
  *
  * If you do not need a callback, set the value of its pointer to <b>NULL</b>. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef struct {
     /** Connection state change */
-    void (*OnWifiConnectionChanged)(int state, WifiLinkedInfo* info);
+    void (*OnWifiConnectionChanged)(int state, WifiLinkedInfo *info);
     /** Scan state change */
     void (*OnWifiScanStateChanged)(int state, int size);
     /** Hotspot state change */
     void (*OnHotspotStateChanged)(int state);
     /** Station connected */
-    void (*OnHotspotStaJoin)(StationInfo* info);
+    void (*OnHotspotStaJoin)(StationInfo *info);
     /** Station disconnected */
-    void (*OnHotspotStaLeave)(StationInfo* info);
+    void (*OnHotspotStaLeave)(StationInfo *info);
 } WifiEvent;
 
 /**
@@ -97,8 +96,7 @@ typedef struct {
  *
  *
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef enum {
     /** Unavailable state */
@@ -107,5 +105,5 @@ typedef enum {
     WIFI_STATE_AVALIABLE
 } WifiEventState;
 
-#endif // _WIFI_EVENT_H
+#endif // WIFI_EVENT_C_H
 /** @} */

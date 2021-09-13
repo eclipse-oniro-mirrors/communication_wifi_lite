@@ -22,8 +22,7 @@
  * You can use this module to enable and disable the Wi-Fi station or hotspot mode, connect to and disconnect from a
  * station or hotspot, query the station or hotspot status, and listen for events. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 /**
@@ -31,12 +30,12 @@
  *
  * @brief Defines the Wi-Fi hotspot configuration.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
-#ifndef _WIFI_HOTSPOT_CONFIG_H
-#define _WIFI_HOTSPOT_CONFIG_H
+#ifndef WIFI_HOTSPOT_CONFIG_C_H
+#define WIFI_HOTSPOT_CONFIG_C_H
+
 #include "wifi_device_config.h"
 #include "wifi_error_code.h"
 
@@ -50,8 +49,7 @@
  *
  * Four RSSI levels are available: 1 to 4. The higher the RSSI level, the stronger the Wi-Fi signal.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef enum {
     /** Level 1. The RSSI value for a 2.4 GHz hotspot ranges from <b>-88</b> (included) to <b>-82</b> (excluded),
@@ -70,8 +68,7 @@ typedef enum {
 /**
  * @brief Enumerates frequency bands supported by the Wi-Fi hotspot mode.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef enum {
     /** 2.4 GHz */
@@ -85,8 +82,7 @@ typedef enum {
  *
  * A hotspot configuration must contain the SSID (or BSSID), security type, and key (if the security type is open). \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef struct {
     /** Service set ID (SSID). For its length, see {@link WIFI_MAX_SSID_LEN}. */
@@ -107,8 +103,7 @@ typedef struct {
  * @param band Indicates the frequency band to set.
  * @return Returns {@link WIFI_SUCCESS} if the frequency band is set; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 WifiErrorCode SetBand(int band);
 
@@ -118,10 +113,9 @@ WifiErrorCode SetBand(int band);
  * @param result Indicates the obtained frequency band.
  * @return Returns {@link WIFI_SUCCESS} if the frequency band is obtained; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
-WifiErrorCode GetBand(int* result);
+WifiErrorCode GetBand(int *result);
 
-#endif // _WIFI_HOTSPOT_CONFIG_H
+#endif // WIFI_HOTSPOT_CONFIG_C_H
 /** @} */
