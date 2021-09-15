@@ -22,8 +22,7 @@
  * You can use this module to enable and disable the Wi-Fi station or hotspot mode, connect to and disconnect from a
  * station or hotspot, query the station or hotspot status, and listen for events. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 /**
@@ -32,8 +31,7 @@
  * @brief Provides capabilities to enable and disable the hotspot mode, connect to and disconnect from a hotspot, query
  * the hotspot status, and listen for events.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 #ifndef HARMONY_OS_LITE_WIFI_HOTSPOT_H
@@ -56,8 +54,7 @@
  *
  * @return Returns {@link WIFI_SUCCESS} if the hotspot mode is enabled; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 WifiErrorCode EnableHotspot(void);
 
@@ -66,8 +63,7 @@ WifiErrorCode EnableHotspot(void);
  *
  * @return Returns {@link WIFI_SUCCESS} if the hotspot mode is disabled; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 WifiErrorCode DisableHotspot(void);
 
@@ -81,10 +77,9 @@ WifiErrorCode DisableHotspot(void);
  * @param config Indicates the hotspot configuration to set.
  * @return Returns {@link WIFI_SUCCESS} if the hotspot configuration is set; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
-WifiErrorCode SetHotspotConfig(const HotspotConfig* config);
+WifiErrorCode SetHotspotConfig(const HotspotConfig *config);
 
 /**
  * @brief Obtains a specified hotspot configuration.
@@ -94,18 +89,16 @@ WifiErrorCode SetHotspotConfig(const HotspotConfig* config);
  * @param result Indicates the obtained hotspot configuration.
  * @return Returns {@link WIFI_SUCCESS} if the hotspot configuration is obtained; returns an error code defined in
  * {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
-WifiErrorCode GetHotspotConfig(HotspotConfig* result);
+WifiErrorCode GetHotspotConfig(HotspotConfig *result);
 
 /**
  * @brief Checks whether the hotspot mode is enabled.
  *
  * @return Returns {@link WIFI_HOTSPOT_ACTIVE} if the hotspot mode is enabled; returns {@link WIFI_HOTSPOT_NOT_ACTIVE}
  * otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 int IsHotspotActive(void);
 
@@ -119,38 +112,20 @@ int IsHotspotActive(void);
  * @param size Indicates the size of the array.
  * @return Returns {@link WIFI_SUCCESS} if the array of stations connected to this hotspot is obtained; returns an error
  *  code defined in {@link WifiErrorCode} otherwise.
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
-WifiErrorCode GetStationList(StationInfo* result, unsigned int* size);
-
-/**
- * @brief Obtains the signal level indicated by a specified received signal strength indicator (RSSI) and frequency
- * band.
- *
- *
- * Based on the signal level, you can display the signal strength represented by the number of signal bars. \n
- *
- * @param rssi Indicates the RSSI.
- * @param band Indicates the frequency band, either {@link HOTSPOT_BAND_TYPE_5G} or {@link HOTSPOT_BAND_TYPE_2G}.
- * @return Returns the signal level if it is obtained; returns <b>-1</b> otherwise.
- * @since 1.0
- * @version 1.0
- */
-int GetSignalLevel(int rssi, int band);
+WifiErrorCode GetStationList(StationInfo *result, unsigned int *size);
 
 /**
  * @brief Disconnects from the station with a specified MAC address.
  *
- * 
- * 
  * @param mac Indicates the pointer to the MAC address of the station.
  * @param macLen Indicates the length of the MAC address of the station.
  * @return Returns {@link WIFI_SUCCESS} if the function is successfully called;
  * returns an error code defined in {@link WifiErrorCode} otherwise.
- * @since 3
+ * @since 7
  */
-WifiErrorCode DisassociateSta(unsigned char* mac, int macLen);
+WifiErrorCode DisassociateSta(unsigned char *mac, int macLen);
 
 /**
  * @brief Adds the hotspot transmit power to the beacon.
@@ -158,11 +133,10 @@ WifiErrorCode DisassociateSta(unsigned char* mac, int macLen);
  * After the transmit power is added, the beacon must contain specified IEs. If the minimum transmit power
  * <b>0xFFFFFFFF</b> is added, the beacon does not contain the IEs. \n
  * The transmit power is added to the <b>ie</b> field only, exerting no impacts on the transmit power. \n
- * 
  * @param power Indicates the transmit power to add.
  * @return Returns {@link WIFI_SUCCESS} if the function is successfully called; returns an error code defined
  * in {@link WifiErrorCode} otherwise.
- * @since 3
+ * @since 7
  */
 WifiErrorCode AddTxPowerInfo(int power);
 

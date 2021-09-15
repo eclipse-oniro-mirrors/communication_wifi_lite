@@ -22,8 +22,7 @@
  * You can use this module to enable and disable the Wi-Fi station or hotspot mode, connect to and disconnect from a
  * station or hotspot, query the station or hotspot status, and listen for events. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 /**
@@ -31,12 +30,12 @@
  *
  * @brief Defines the data structure and macro of the Wi-Fi scan result information.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
-#ifndef _WIFI_SCAN_INFO_H
-#define _WIFI_SCAN_INFO_H
+#ifndef WIFI_SCAN_INFO_C_H
+#define WIFI_SCAN_INFO_C_H
+
 #include "wifi_device_config.h"
 
 /**
@@ -47,8 +46,7 @@
 /**
  * @brief Represents the Wi-Fi scan result information.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef struct {
     /** Service set ID (SSID). For its length, see {@link WIFI_MAX_SSID_LEN}. */
@@ -65,5 +63,5 @@ typedef struct {
     int frequency;
 } WifiScanInfo;
 
-#endif // _WIFI_SCAN_INFO_H
+#endif // WIFI_SCAN_INFO_C_H
 /** @} */
