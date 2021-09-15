@@ -22,8 +22,7 @@
  * You can use this module to enable and disable the Wi-Fi station or hotspot mode, connect to and disconnect from a
  * station or hotspot, query the station or hotspot status, and listen for events. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 /**
@@ -34,8 +33,7 @@
  * The station information is passed to {@link OnHotspotStaJoin} or {@link OnHotspotStaLeave} invoked when a specified
  * event occurs.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 #ifndef HARMONY_OS_LITE_WIFI_STATION_INFO_H
@@ -47,12 +45,11 @@
  *
  * The station information is returned when {@link OnHotspotStaJoin} or {@link OnHotspotStaLeave} is called. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef struct {
     /** Network name of the station */
-    char* name;
+    char *name;
     /** MAC address. For its length, see {@link WIFI_MAC_LEN}. */
     unsigned char macAddress[WIFI_MAC_LEN];
     /** IP address of the station */

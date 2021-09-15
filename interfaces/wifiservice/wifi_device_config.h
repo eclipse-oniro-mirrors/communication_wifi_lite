@@ -22,8 +22,7 @@
  * You can use this module to enable and disable the Wi-Fi station or hotspot mode, connect to and disconnect from a
  * station or hotspot, query the station or hotspot status, and listen for events. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 /**
@@ -33,8 +32,7 @@
  *
  * The Wi-Fi station configuration includes the security type and data length. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 #ifndef HARMONY_OS_LITE_WIFI_DEVICE_CONFIG_H
@@ -77,6 +75,7 @@
  *
  */
 #define WIFI_PSK_LEN 32
+
 /**
  * @brief Indicates the maximum number of DNS servers.
  *
@@ -85,10 +84,15 @@
 #define WIFI_MAX_DNS_NUM 2
 
 /**
+ * @brief Indicates the maximum length of a device name.
+ *
+ */
+#define DEVICE_NAME_LEN 128
+
+/**
  * @brief Enumerates Wi-Fi security types.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef enum {
     /** Invalid security type */
@@ -106,8 +110,7 @@ typedef enum {
 /**
  * @brief Enumerates psk encryption types.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef enum {
     /** Indicates that the ascii type of psk encryption type */
@@ -125,13 +128,13 @@ typedef enum {
  */
 typedef struct {
     /** IP address of the Wi-Fi device */
-    int ipAddress;
+    unsigned int ipAddress;
     /** Gateway of the Wi-Fi device */
-    int gateway;
+    unsigned int gateway;
     /** DNS server addresses for the Wi-Fi device */
-    int dnsServers[WIFI_MAX_DNS_NUM];
+    unsigned int dnsServers[WIFI_MAX_DNS_NUM];
     /** Subnet mask of the Wi-Fi device */
-    int netmask;
+    unsigned int netmask;
 } IpConfig;
 
 /**
@@ -151,8 +154,7 @@ typedef enum {
 /**
  * @brief Represents the Wi-Fi station configuration used to connect to a specified Wi-Fi device.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef struct WifiDeviceConfig {
     /** Service set ID (SSID). For its length, see {@link WIFI_MAX_SSID_LEN}. */
@@ -173,13 +175,14 @@ typedef struct WifiDeviceConfig {
     IpType ipType;
     /** Static IP address */
     IpConfig staticIp;
+    /* 1 for hidden config */
+    int isHiddenSsid;
 } WifiDeviceConfig;
 
 /**
  * @brief Enumerates Wi-Fi scan types.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef enum {
     /** A scan based on a specified frequency. */
@@ -195,8 +198,7 @@ typedef enum {
 /**
  * @brief Represents the Wi-Fi station configuration used to connect to a specified Wi-Fi device.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef struct {
     /** Service set ID (SSID). Its maximum length is defined by {@link WIFI_MAX_SSID_LEN}. */
@@ -213,5 +215,19 @@ typedef struct {
     WifiScanType scanType;
 } WifiScanParams;
 
+/**
+ * @brief IP info
+ *
+ * @since 7
+ */
+typedef struct {
+    unsigned int ipAddress;
+    unsigned int netMask;
+    unsigned int netGate;
+    unsigned int dns1;
+    unsigned int dns2;
+    unsigned int serverAddress;
+    int leaseDuration;
+} IpInfo;
 #endif // HARMONY_OS_LITE_WIFI_DEVICE_CONFIG_H
 /** @} */

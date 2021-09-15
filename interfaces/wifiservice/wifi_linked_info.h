@@ -22,8 +22,7 @@
  * You can use this module to enable and disable the Wi-Fi station or hotspot mode, connect to and disconnect from a
  * station or hotspot, query the station or hotspot status, and listen for events. \n
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 /**
@@ -31,8 +30,7 @@
  *
  * @brief Defines the data structure and macro of the Wi-Fi connection information.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 
 #ifndef HARMONY_OS_LITE_WIFI_LINKED_INFO_H
@@ -42,8 +40,7 @@
 /**
  * @brief Enumerates Wi-Fi connection states.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef enum {
     /** Disconnected */
@@ -58,8 +55,7 @@ typedef enum {
  * This refers to the information about the hotspot connected to this station. The information is obtained using
  * {@link GetLinkedInfo}.
  *
- * @since 1.0
- * @version 1.0
+ * @since 7
  */
 typedef struct {
     /** Service set ID (SSID). For its length, see {@link WIFI_MAX_SSID_LEN}. */
@@ -68,12 +64,16 @@ typedef struct {
     unsigned char bssid[WIFI_MAC_LEN];
     /** Received signal strength indicator (RSSI) */
     int rssi;
+    /** Wi-Fi band information of hotspot */
+    int band;
+    /** Wi-Fi frequency information of hotspot */
+    int frequency;
     /** Wi-Fi connection state, which is defined in {@link WifiConnState} */
     WifiConnState connState;
     /** Reason for Wi-Fi disconnection */
     unsigned short disconnectedReason;
     /** IP address of the connected hotspot */
-    int ipAddress;
+    unsigned int ipAddress;
 } WifiLinkedInfo;
 #endif // HARMONY_OS_LITE_WIFI_LINKED_INFO_H
 /** @} */
