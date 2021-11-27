@@ -11,6 +11,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+config("include") {
+  include_dirs = [ "interfaces/wifiservice" ]
+}
+
 group("wifi") {
-  deps = [ "$ohos_board_adapter_dir/hals/communication/wifi_lite/wifiservice:wifiservice" ]
+  public_configs = [ ":include" ]
 }
